@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizzaa da Hora | Link na Bio</title>
+
+  <!-- Fontes e Ícones -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --card-bg: #1a1a1a;
+      --accent: #ff4d4d;        /* vermelho pizza */
+      --accent-soft: #ff6b6b;
+      --text: #f5f5f5;
+      --text-muted: #b0b0b0;
+      --border: #2a2a2a;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+      background-image: radial-gradient(circle at 20% 10%, rgba(255, 77, 77, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 90%, rgba(255, 107, 107, 0.06) 0%, transparent 40%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== CABEÇALHO ===== */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #ff9a9e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 44px;
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(255, 77, 77, 0.25), var(--shadow);
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(255, 77, 77, 0.25), var(--shadow); }
+      50%      { box-shadow: 0 0 0 10px rgba(255, 77, 77, 0.10), var(--shadow); }
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .header h1 span {
+      color: var(--accent);
+    }
+
+    .header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.5;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 14px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 50px;
+      background: rgba(255, 77, 77, 0.08);
+    }
+
+    /* ===== CARDS ===== */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    /* Efeito de brilho ao passar o mouse */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .card:hover::before {
+      left: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.02);
+      border-color: var(--accent);
+      background: #222;
+      box-shadow: 0 20px 40px rgba(255, 77, 77, 0.15);
+    }
+
+    .card:active {
+      transform: scale(0.98);
+    }
+
+    /* Ícone do card */
+    .card-icon {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .card:hover .card-icon {
+      transform: rotate(-8deg) scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+    }
+
+    /* Conteúdo textual */
+    .card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-content h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    .card-content p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Seta indicativa */
+    .card-arrow {
+      flex-shrink: 0;
+      font-size: 16px;
+      color: var(--text-muted);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .card:hover .card-arrow {
+      transform: translateX(6px);
+      color: var(--accent);
+    }
+
+    /* Cores específicas por tipo de card (opcional) */
+    .card.instagram .card-icon { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .card.whatsapp .card-icon { background: linear-gradient(135deg, #25d366, #128c7e); }
+    .card.maps .card-icon { background: linear-gradient(135deg, #4285f4, #34a853); }
+    .card.horario .card-icon { background: linear-gradient(135deg, #fbbc04, #ea4335); }
+
+    /* ===== RODAPÉ ===== */
+    .footer {
+      margin-top: 36px;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #555;
+      letter-spacing: 0.5px;
+    }
+
+    .footer i {
+      color: var(--accent);
+      margin: 0 3px;
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
+    @media (max-width: 380px) {
+      .card {
+        padding: 14px 16px;
+        gap: 12px;
+      }
+      .card-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+      }
+      .header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- CABEÇALHO -->
+    <header class="header">
+      <div class="avatar">
+        <i class="fa-solid fa-pizza-slice"></i>
+      </div>
+      <h1>Pizzaa <span>da Hora</span></h1>
+      <p>Pizzaria • Hamburgueria • Lanchonete • Bar<br />O maior buteco da Lagoa – Pedro Leopoldo/MG</p>
+      <span class="badge">Delivery &amp; Salão</span>
+    </header>
+
+    <!-- CARDS -->
+    <main class="cards">
+
+      <!-- 1. INSTAGRAM -->
+      <a href="https://www.instagram.com/pizzadahora_pl/" target="_blank" rel="noopener" class="card instagram">
+        <div class="card-icon"><i class="fa-brands fa-instagram"></i></div>
+        <div class="card-content">
+          <h2>Instagram</h2>
+          <p>@pizzadahora_pl</p>
+        </div>
+        <i class="fa-solid fa-chevron-right card-arrow"></i>
+      </a>
+
+      <!-- 2. WHATSAPP / TELEFONE -->
+      <a href="https://wa.me/553136620698" target="_blank" rel="noopener" class="card whatsapp">
+        <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="card-content">
+          <h2>WhatsApp / Telefone</h2>
+          <p>(31) 3662-0698</p>
+        </div>
+        <i class="fa-solid fa-chevron-right card-arrow"></i>
+      </a>
+
+      <!-- 3. LOCALIZAÇÃO -->
+      <a href="https://www.google.com/maps/search/?api=1&query=Pizza+da+Hora+Pedro+Leopoldo" target="_blank" rel="noopener" class="card maps">
+        <div class="card-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="card-content">
+          <h2>Como Chegar</h2>
+          <p>R. Vereador Magno Claret Vieira, 458 – Pedro Leopoldo/MG</p>
+        </div>
+        <i class="fa-solid fa-chevron-right card-arrow"></i>
+      </a>
+
+      <!-- 4. HORÁRIO -->
+      <div class="card horario" onclick="abrirHorario()">
+        <div class="card-icon"><i class="fa-regular fa-clock"></i></div>
+        <div class="card-content">
+          <h2>Horário de Funcionamento</h2>
+          <p>Ter–Dom: 18h às 23h | Seg: Fechado</p>
+        </div>
+        <i class="fa-solid fa-chevron-right card-arrow"></i>
+      </div>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+      Feito com <i class="fa-solid fa-heart"></i> para a Pizzaa da Hora
+    </footer>
+
+  </div>
+
+  <script>
+    // Efeito de "ripple" (onda) ao clicar em qualquer card
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', function (e) {
+        // Se for o card de horário, não executa o ripple duplicado (já tem onclick)
+        if (this.classList.contains('horario')) return;
+
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size}px;
+          left: ${x}px;
+          top: ${y}px;
+          background: rgba(255,255,255,0.15);
+          border-radius: 50%;
+          transform: scale(0);
+          animation: rippleAnim 0.6s ease-out;
+          pointer-events: none;
+        `;
+
+        // Remove ripple anterior, se existir
+        const oldRipple = this.querySelector('.ripple');
+        if (oldRipple) oldRipple.remove();
+
+        ripple.classList.add('ripple');
+        this.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // Animação do ripple (inserida via JS para não poluir o CSS)
+    const styleRipple = document.createElement('style');
+    styleRipple.textContent = `
+      @keyframes rippleAnim {
+        to { transform: scale(2.5); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(styleRipple);
+
+    // Função simples para o card de horário (exibe um alerta ou pode ser expandido)
+    function abrirHorario() {
+      alert('🕒 Horário de funcionamento:\n\nTerça a Domingo: 18:00 – 23:00\nSegunda-feira: Fechado');
+    }
+  </script>
+
+</body>
+</html>
